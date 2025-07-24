@@ -32,6 +32,149 @@
   color: white !important;
 }
 
+.home-section {
+  font-family: "Zilla Slab", serif;
+  background-color: #fdf6f0;
+  color: #3e2f1c;
+  min-height: 60vh;
+}
+
+.home-description {
+  font-style: italic;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: "Zilla Slab", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.8rem;
+  color: #3e2f1c;
+}
+
+.image-home {
+  position: relative;
+  background-image: url("./img/Copertina1.JPG");
+  background-size: cover;
+  background-position: inherit;
+  height: 65vh;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.image-home > * {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 992px) {
+  .image-home {
+    height: 55vh;
+  }
+
+  .image-home h1 {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-home {
+    height: 45vh;
+  }
+
+  .image-home h1 {
+    font-size: 1.5rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .image-home {
+    height: 35vh;
+  }
+
+  .image-home h1 {
+    font-size: 1.25rem;
+    padding: 0 0.5rem;
+  }
+}
+
+.image-prodotti {
+  position: relative;
+  background-image: url("./img/prodotti.JPG");
+  background-size: cover;
+  background-position: inherit;
+  height: 65vh;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-prodotti::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.image-prodotti > * {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 992px) {
+  .image-prodotti {
+    height: 55vh;
+  }
+
+  .image-prodotti h1 {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-prodotti {
+    height: 45vh;
+  }
+
+  .image-prodotti h1 {
+    font-size: 1.5rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .image-prodotti {
+    height: 35vh;
+  }
+
+  .image-prodotti h1 {
+    font-size: 1.25rem;
+    padding: 0 0.5rem;
+  }
+}
+
 .footer-custom {
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(0.5px);
@@ -40,4 +183,160 @@
   font-size: 12px;
   font-weight: 400;
   color: white;
+}
+
+.font-carousel {
+  font-family: "Zilla Slab", serif;
+}
+
+.bg-card {
+  background-color: #fdf6f0;
+}
+
+.btn-white {
+  background-color: #fdf6f0;
+  color: black;
+  border: 1px solid black;
+  font-weight: 600;
+  transition: background-color 0.6s ease;
+}
+
+.btn-white:hover {
+  background-color: #7b4b29;
+  color: white;
+}
+
+.login-container {
+  background-color: #fff8dc;
+  border: 1px solid #d6bfa7;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  margin: 4rem auto;
+}
+
+.form-control {
+  border-radius: 6px;
+  border: 1px solid #d6bfa7;
+}
+
+.error-text {
+  color: #b0413e;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.prodotti-col {
+  height: 600px;
+  overflow-y: auto;
+}
+
+.card-img-custom {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+  width: 100%;
+}
+
+.card-title-color {
+  color: #3e2f1c;
+}
+
+.card-text-color {
+  color: #5c4433;
+  font-size: 0.9rem;
+}
+
+.card-text-allergeni {
+  color: #5c4433;
+  font-size: 0.8rem;
+}
+
+.card-price-color {
+  color: #7b4b29;
+}
+
+.btn-remove-prod {
+  background-color: black !important;
+  color: white !important;
+  border: 1px solid black !important;
+  padding: 0 8px !important;
+  font-size: 0.9rem !important;
+  line-height: 1 !important;
+  border-radius: 4px !important;
+  min-width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.prodotto-selezionato-item {
+  margin-bottom: 8px;
+}
+
+.fixed-width-card {
+  width: 280px;
+  max-width: 100%;
+}
+
+.fixed-width-card .card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.prodotti-col {
+  max-height: 75vh;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+.fixed-width-card {
+  max-width: 320px;
+  width: 100%;
+}
+
+.borderless-modal .modal-content {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.transparent-backdrop {
+  background-color: transparent !important;
+}
+
+.modal-body {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.modal-open {
+  padding-right: 0 !important;
+  overflow: hidden;
+}
+
+.fixed-width-card {
+  max-width: 320px;
+  width: 100%;
+}
+.centered-modal .modal-dialog {
+  position: relative !important;
+  top: 100px !important;
+  margin: 0 auto !important;
+  display: block !important;
+  max-width: 320px;
+}
+
+.margin-top {
+  margin-top: 150px;
+}
+
+.fixed-image {
+  width: 800px;
+  height: auto;
+  max-width: 100%;
 }
