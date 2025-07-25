@@ -167,7 +167,7 @@ const Backoffice = () => {
   };
 
   return (
-    <Container fluid className="home-section font-carousel px-5 py-2">
+    <Container fluid className="home-section font-carousel px-5 py-2 pt-5">
       {/* Aggiungi prodotto */}
       <Card className="shadow border-0 bg-white rounded-4 p-2 mb-4">
         <div className="title d-flex ps-2 my-4">
@@ -258,6 +258,7 @@ const Backoffice = () => {
         <div className="title d-flex ps-2 my-4">
           <h2 className="fw-bold text-center m-0">Prodotti esistenti</h2>
         </div>
+
         {prodotti.length === 0 ? (
           <p className="text-muted">Nessun prodotto disponibile.</p>
         ) : (
@@ -274,40 +275,140 @@ const Backoffice = () => {
               </tr>
             </thead>
             <tbody>
-              {prodotti.map((p) => (
+              {prodotti.map((p, index) => (
                 <tr key={p.id}>
-                  <td>{p.nome}</td>
-                  <td>€ {Number(p.prezzo).toFixed(2)}</td>
-                  <td>{p.allergeni}</td>
-                  <td>{p.descrizione}</td>
                   <td>
-                    <Form.Check
-                      type="switch"
-                      id={`switch-disponibile-${p.id}`}
-                      label={p.disponibile ? "Disponibile" : "Non disponibile"}
-                      checked={p.disponibile}
-                      onChange={() => toggleDisponibilita(p.id, !p.disponibile)}
+                    <Form.Control
+                      type="text"
+                      value={p.nome}
+                      onChange={(e) => {
+                        const updated = [...prodotti];
+                        updated[index].nome = e.target.value;
+                        setProdotti(updated);
+                      }}
                     />
                   </td>
                   <td>
-                    {p.immagineProdotto ? (
+                    <Form.Control
+                      type="number"
+                      step="0.01"
+                      value={p.prezzo}
+                      onChange={(e) => {
+                        const updated = [...prodotti];
+                        updated[index].prezzo = e.target.value;
+                        setProdotti(updated);
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <Form.Control
+                      type="text"
+                      value={p.allergeni}
+                      onChange={(e) => {
+                        const updated = [...prodotti];
+                        updated[index].allergeni = e.target.value;
+                        setProdotti(updated);
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <Form.Control
+                      as="textarea"
+                      rows={2}
+                      value={p.descrizione}
+                      onChange={(e) => {
+                        const updated = [...prodotti];
+                        updated[index].descrizione = e.target.value;
+                        setProdotti(updated);
+                      }}
+                    />
+                  </td>
+                  <td className="text-center">
+                    <Form.Check
+                      type="switch"
+                      id={`switch-disponibile-${p.id}`}
+                      label={p.disponibile ? "Disponibile" : "Disponibile"}
+                      checked={p.disponibile}
+                      onChange={(e) => {
+                        const updated = [...prodotti];
+                        updated[index].disponibile = e.target.checked;
+                        setProdotti(updated);
+                      }}
+                    />
+                  </td>
+                  <td className="text-center">
+                    {p.immagineProdotto && (
                       <img
                         src={p.immagineProdotto}
                         alt={p.nome}
-                        style={{ width: "80px", height: "auto" }}
+                        style={{
+                          width: "80px",
+                          height: "auto",
+                          display: "block",
+                          marginBottom: "5px",
+                        }}
                       />
-                    ) : (
-                      <span className="text-muted">Nessuna immagine</span>
                     )}
+                    <Form.Control
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const updated = [...prodotti];
+                        updated[index].nuovaImmagine = e.target.files[0];
+                        setProdotti(updated);
+                      }}
+                    />
                   </td>
                   <td>
-                    <Button
-                      variant="outline-danger"
-                      size="sm"
-                      onClick={() => eliminaProdotto(p.id)}
-                    >
-                      Elimina
-                    </Button>
+                    <div className="d-flex flex-column gap-1">
+                      <Button
+                        size="sm"
+                        variant="outline-dark"
+                        onClick={async () => {
+                          try {
+                            const prodottoAggiornato = {
+                              nome: p.nome,
+                              descrizione: p.descrizione,
+                              allergeni: p.allergeni,
+                              prezzo: parseFloat(p.prezzo),
+                              disponibile: p.disponibile,
+                            };
+
+                            await axiosClient.put(
+                              `/prodotti/${p.id}`,
+                              prodottoAggiornato
+                            );
+
+                            if (p.nuovaImmagine) {
+                              const formData = new FormData();
+                              formData.append("file", p.nuovaImmagine);
+                              await axiosClient.patch(
+                                `/prodotti/${p.id}`,
+                                formData,
+                                {
+                                  headers: {
+                                    "Content-Type": "multipart/form-data",
+                                  },
+                                }
+                              );
+                            }
+
+                            fetchProdotti();
+                          } catch (err) {
+                            console.error("Errore salvataggio:", err);
+                          }
+                        }}
+                      >
+                        Salva
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline-danger"
+                        onClick={() => eliminaProdotto(p.id)}
+                      >
+                        Elimina
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))}
