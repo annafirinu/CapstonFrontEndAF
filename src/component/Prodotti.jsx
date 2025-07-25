@@ -62,7 +62,7 @@ const Prodotti = () => {
     <div className="home-section">
       <div className="image-prodotti d-flex justify-content-center align-items-center">
         <div className="text-center p-4 rounded">
-          <h1 className="text-light fs-2 fst-italic">"I nostri prodotti"</h1>
+          <h1 className="text-light fs-2 fst-italic">I nostri prodotti</h1>
         </div>
       </div>
 
@@ -87,7 +87,11 @@ const Prodotti = () => {
         </p>
         <p className="lead text-center home-description">
           Proprio per questo viene preparato in occasioni speciali o su
-          richiesta,{" "}
+          richiesta
+        </p>
+        <p className="lead text-center home-description">
+          Se vuoi provare i nostri prodotti non ti resta che{" "}
+          <a href="http://localhost:5173/prenota">ordinarli qui!</a>
         </p>
       </Container>
 

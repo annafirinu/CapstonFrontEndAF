@@ -8,7 +8,7 @@ const Home = function () {
       <div className="image-home d-flex justify-content-center align-items-center">
         <div className="text-center p-4 rounded">
           <h1 className="text-light fs-1 fst-italic">
-            Settant’anni di pane, passione e tradizione.
+            Settant’anni di pane, passione e tradizione
           </h1>
         </div>
       </div>

@@ -69,7 +69,7 @@ const Contatti = () => {
             </p>
             <p className="lead text-center home-description my-3">
               Se preferisci un contatto più diretto, puoi chiamarci al nostro
-              numero di telefono.
+              <a href="tel:+393425056307"> numero di telefono.</a>
             </p>
           </Col>
 
